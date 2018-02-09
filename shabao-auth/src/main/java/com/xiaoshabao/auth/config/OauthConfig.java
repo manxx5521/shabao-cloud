@@ -2,8 +2,6 @@ package com.xiaoshabao.auth.config;
 
 import java.util.List;
 
-import javax.validation.constraints.NotNull;
-
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
@@ -14,7 +12,7 @@ import org.springframework.stereotype.Component;
 @ConfigurationProperties("custom.oauth2")
 public class OauthConfig {
 	
-	@NotNull private List<Client> client;
+	private List<Client> client;
 	private Server server;
 
 	public static class Client {
