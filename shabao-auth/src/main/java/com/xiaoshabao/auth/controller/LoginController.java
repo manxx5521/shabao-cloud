@@ -20,7 +20,6 @@ public class LoginController {
 	
 	@RequestMapping("/authorize")
     public String authorize() {
-		
 		return "authorize";
     }
 	
