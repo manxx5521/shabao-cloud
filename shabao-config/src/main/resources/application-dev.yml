@@ -1,0 +1,7 @@
+foo: devtest
+domain: www.application-dev.com
+custom:
+  oauth2:
+    server:
+      accessTokenUri: http://localhost:9001/uaa/oauth/token
+      userAuthorizationUri: http://localhost:9001/uaa/oauth/authorize

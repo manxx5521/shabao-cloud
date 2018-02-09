@@ -1,0 +1,44 @@
+server:
+  port: 9012
+  
+spring:
+  application:
+    name: shabao-admin
+  cloud:
+    config:
+#      uri: http://localhost:9002
+#      uri: http://user:123@localhost:9002 #硬编码形式
+      profile: dev #使用的环境
+      discovery: 
+        enabled: true #通过服务发现组件 找到配置中心
+        service-id: shabao-config
+      username: user
+      password: 123
+  datasource:
+    name: test
+    url: jdbc:mysql://127.0.0.1:3306/shabao_cloud?useUnicode=true&characterEncoding=utf8
+    username: master
+    password: 19911105man
+    driver-class-name: com.mysql.jdbc.Driver
+  redis:
+    database: 1
+    port: 6379
+    host: 47.91.220.42
+    password: 19911105man
+    pool:
+      max-active: 20
+  
+eureka:
+  client:
+    serviceUrl:
+#      defaultZone: http://localhost:8761/eureka/ #非认证模式
+      defaultZone: http://user:123@localhost:8761/eureka/
+  instance:
+    prefer-ip-address: true #服务端管理界面显示ip地址
+    
+security:
+  oauth2:
+    resource:
+      id: order-service
+      user-info-uri: http://localhost:9001/uaa/user
+      prefer-token-info: false

@@ -1,0 +1,5 @@
+custom:
+  oauth2:
+    client:
+      - {clientId: shabao, clientSecret: 123456, grantType: password}
+      - {clientId: shabao2, clientSecret: 123456, grantType: password}

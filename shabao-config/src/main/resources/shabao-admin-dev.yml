@@ -1,0 +1,6 @@
+custom:
+  oauth2:
+    client:
+      clientId: shabao
+      clientSecret: 123456
+      grantType: password
