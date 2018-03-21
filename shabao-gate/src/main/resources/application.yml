@@ -1,6 +1,8 @@
 spring:
   application:
     name: shabao-gate
+  freemarker:
+    request-context-attribute: request
 
 server:
   port: 9001

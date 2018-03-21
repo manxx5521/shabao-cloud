@@ -3,7 +3,6 @@ package com.xiaoshabao.admin.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.xiaoshabao.admin.config.OauthConfig;
 
@@ -12,7 +11,12 @@ public class LoginController {
 
 	@Autowired
 	OauthConfig config;
-
+	
+	@GetMapping("/login")
+	public String login(String redirectUri) {
+		return "/login";
+	}
+/*
 	@GetMapping("/login")
 	@ResponseBody
 	public String login(String redirectUri) {
@@ -29,7 +33,7 @@ public class LoginController {
 		url.append(redirectUri);
 		// url.append("&state=");
 		// url.append("");
-		return /*"redirect:" +*/ url.toString();
+		return "redirect:" + url.toString();
 	}
-
+*/
 }

@@ -4,6 +4,8 @@ server:
 spring:
   application:
     name: shabao-admin
+  freemarker:
+    request-context-attribute: request
   cloud:
     config:
 #      uri: http://localhost:9002
