@@ -11,7 +11,7 @@
 		<!--增加eureka-server的依赖 -->
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-starter-eureka-server</artifactId>
+			<artifactId>spring-cloud-starter-netflix-eureka-server</artifactId>
 		</dependency>
 		<!--增加 安全的依赖，可以通过密码管理eureka管理界面 -->
 		<dependency>
