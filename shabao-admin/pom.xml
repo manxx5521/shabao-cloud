@@ -28,7 +28,7 @@
 		<!--eureka客户端依赖 -->
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-starter-eureka</artifactId>
+			<artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
 		</dependency>
 		<!--提供监控接口 -->
 		<dependency>
@@ -38,8 +38,18 @@
 		<!--hystrix断路器依赖 -->
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-starter-hystrix</artifactId>
+			<artifactId>spring-cloud-starter-netflix-hystrix</artifactId>
 		</dependency>
+		<!--feign支持-->
+		<dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-openfeign</artifactId>
+        </dependency>
+		<!--ribbon支持负载均衡 -->
+		<dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-netflix-ribbon</artifactId>
+        </dependency>
 		<!--配置中心客户端 -->
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
@@ -51,11 +61,12 @@
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-oauth2</artifactId>
 		</dependency>
-		<!-- jwt支持 -->
+		<!-- jwt支持 
 		<dependency>
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-jwt</artifactId>
 		</dependency>
+		-->
 		<!-- 安全支持 -->
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>

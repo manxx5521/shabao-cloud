@@ -23,7 +23,7 @@
 		<!--增加eureka-client的依赖 -->
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-starter-eureka</artifactId>
+			<artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
 		</dependency>
 		<!--提供监控接口 -->
 		<dependency>

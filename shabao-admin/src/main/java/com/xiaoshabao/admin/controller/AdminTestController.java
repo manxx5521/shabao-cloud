@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
+import com.xiaoshabao.admin.service.feign.UserService;
 import com.xiaoshabao.upms.client.entity.UserEntity;
 
 @RestController
@@ -21,6 +22,9 @@ public class AdminTestController {
 
 	@Value("${domain}")
 	private String domain;
+	
+	@Autowired
+	private UserService userService;
 
 	// 断路器支持
 	@HystrixCommand(fallbackMethod = "testError")
@@ -43,6 +47,21 @@ public class AdminTestController {
 		user.setUserName("失败");
 		return user;
 	}
+	
+	/**
+	 * 测试配置中心配置
+	 * 
+	 * @return
+	 */
+	@GetMapping("/feign")
+	public UserEntity testFeign() {
+		UserEntity user= userService.getUserById("111");
+		if(user==null) {
+			System.out.println("触发熔断");
+		}
+		return user;
+	}
+	
 
 	/**
 	 * 测试配置中心配置

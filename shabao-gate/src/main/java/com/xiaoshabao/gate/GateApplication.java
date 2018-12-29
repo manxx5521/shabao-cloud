@@ -2,37 +2,48 @@ package com.xiaoshabao.gate;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
-import org.springframework.cloud.netflix.zuul.EnableZuulProxy;
-import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+import org.springframework.cloud.gateway.route.RouteLocator;
+import org.springframework.cloud.gateway.route.builder.RouteLocatorBuilder;
+import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
+import org.springframework.context.annotation.Bean;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import reactor.core.publisher.Mono;
 
 /**
  * 路由管理
  * <p>
- * 继承子WebMvcConfigurerAdapter 是为了配置oauth2
  * </p>
  */
-// zuul支持
-@EnableZuulProxy
-// 注册服务发现客户端
-@EnableDiscoveryClient
+@RestController
 @SpringBootApplication
-public class GateApplication extends WebMvcConfigurerAdapter {
+@EnableEurekaClient
+public class GateApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(GateApplication.class, args);
 	}
 
-	/**
-	 * 添加自定义的登录和授权界面
-	 */
-	@Override
-	public void addViewControllers(ViewControllerRegistry registry) {
-		
-		registry.addViewController("/login").setViewName("login");
-		registry.addViewController("/oauth/confirm_access").setViewName("authorize");
-
+	@Bean
+	public RouteLocator myRoutes(RouteLocatorBuilder builder) {
+		return builder.routes()
+				.route(p -> 
+					p.path("/get")//匹配所有/get 请求
+					.filters(f -> f.addRequestHeader("Hello", "World"))//添加heard信息
+					.uri("http://httpbin.org:80"))
+				/*.route(p -> p
+					.host("*.hystrix.com")//匹配 host有“*.hystrix.com”，都会进入该router
+				    .filters(f -> f
+				    	.hystrix(config -> config//服务熔断降级
+				    		.setName("mycmd")//配置名称
+				            .setFallbackUri("forward:/fallback")))//指向性fallback的逻辑的地址
+				     .uri("http://httpbin.org:80"))*/
+				.build();
 	}
-
+	
+	@RequestMapping("/fallback")
+    public Mono<String> fallback() {
+        return Mono.just("fallback");
+    }
 }

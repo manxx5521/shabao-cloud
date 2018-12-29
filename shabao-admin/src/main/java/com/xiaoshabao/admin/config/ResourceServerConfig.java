@@ -21,14 +21,18 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 	public void configure(HttpSecurity http) throws Exception {
 		// 禁掉csrf
 		http.csrf().disable()
-				// 登录页面url 配置登录成功后调用的方法
-				.formLogin().loginPage("/admin/login").permitAll()
-				.and().authorizeRequests()
+			.authorizeRequests()
 				// 配置这些链接无需验证
-				.antMatchers("/login")
-				.anonymous().and().authorizeRequests()
+				.antMatchers("/login").anonymous().and().authorizeRequests()
+				.antMatchers("/test/**").permitAll()
 				// 除以上路径都需要验证
 				.anyRequest().authenticated()
+				.and()
+				// 登录页面url 配置登录成功后调用的方法
+			.formLogin()
+				.loginPage("/admin/login").permitAll()
+				
+				
 		// 路径角色验证
 		// .antMatchers("/admin/**").hasRole("ADMIN")
 		// 排除该路径角色认证 注意顺序自上而下

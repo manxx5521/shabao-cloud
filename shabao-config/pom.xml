@@ -10,6 +10,12 @@
 	<name>shabao-config</name>
 	<description>统一配置服务</description>
 	<dependencies>
+		<!--eureka客户端依赖 -->
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+		</dependency>
+
 		<!-- config支持 -->
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
@@ -20,13 +26,9 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-security</artifactId>
 		</dependency>
-		<!--eureka客户端依赖 -->
-		<dependency>
-			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-starter-eureka</artifactId>
-		</dependency>
+
 	</dependencies>
-	
+
 	<build>
 		<plugins>
 			<!-- 打包插件 -->

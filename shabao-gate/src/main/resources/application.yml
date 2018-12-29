@@ -1,11 +1,5 @@
-spring:
-  application:
-    name: shabao-gate
-  freemarker:
-    request-context-attribute: request
-
 server:
-  port: 9001
+  port: 8080
   
 eureka:
   client:
@@ -14,27 +8,17 @@ eureka:
       defaultZone: http://user:123@localhost:8761/eureka/
   instance:
     prefer-ip-address: true #服务端管理界面显示ip地址
-    
-#配置路由
-zuul:
-  routes:
-    admin:
-      path: /admin/**
-      serviceId: shabao-admin
-    upms:
-      path: /upms/**
-      serviceId: shabao-upms
-    uaa:
-      path: /uaa/**
-      sensitiveHeaders:
-      serviceId: shabao-auth
-      
-security:
-  oauth2:
-    client:
-      access-token-uri: http://localhost:9001/uaa/oauth/token
-      user-authorization-uri: http://localhost:9001/uaa/oauth/authorize
-      client-id: webapp
-    resource:
-      user-info-uri: http://localhost:9001/uaa/user
-      prefer-token-info: false
+  
+spring:
+  application:
+    name: shabao-gate
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true #开启服务注册和发现的功能，并且spring cloud gateway自动根据服务发现为每一个服务创建了一个router，这个router将以服务名开头的请求路径转发到对应的服务
+          lowerCaseServiceId: true #将请求路径上的服务名配置为小写（因为服务注册的时候，向注册中心注册时将服务名转成大写的了）
+          
+logging:
+  level:
+    org.springframework.cloud.gateway: debug

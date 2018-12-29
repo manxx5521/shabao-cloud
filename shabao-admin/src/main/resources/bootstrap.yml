@@ -1,6 +1,17 @@
 server:
   port: 9012
   
+eureka:
+  client:
+    serviceUrl:
+#      defaultZone: http://localhost:8761/eureka/ #非认证模式
+      defaultZone: http://user:123@localhost:8761/eureka/
+  instance:
+    prefer-ip-address: true #服务端管理界面显示ip地址
+
+#打开feign 的熔断功能
+feign.hystrix.enabled: true
+  
 spring:
   application:
     name: shabao-admin
@@ -17,11 +28,10 @@ spring:
       username: user
       password: 123
   datasource:
-    name: test
-    url: jdbc:mysql://127.0.0.1:3306/shabao_cloud?useUnicode=true&characterEncoding=utf8
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://47.91.220.42:3306/shabao_test?useUnicode=true&characterEncoding=utf8&useSSL=false
     username: master
     password: 19911105man
-    driver-class-name: com.mysql.jdbc.Driver
   redis:
     database: 1
     port: 6379
@@ -29,14 +39,6 @@ spring:
     password: 19911105man
     pool:
       max-active: 20
-  
-eureka:
-  client:
-    serviceUrl:
-#      defaultZone: http://localhost:8761/eureka/ #非认证模式
-      defaultZone: http://user:123@localhost:8761/eureka/
-  instance:
-    prefer-ip-address: true #服务端管理界面显示ip地址
     
 security:
   oauth2:

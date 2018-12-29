@@ -22,7 +22,7 @@
 		<!--eureka客户端依赖 -->
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-starter-eureka</artifactId>
+			<artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
 		</dependency>
 		<!--提供监控接口 -->
 		<dependency>
@@ -39,11 +39,11 @@
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-oauth2</artifactId>
 		</dependency>
-		<!-- jwt支持 -->
+		<!-- jwt支持
 		<dependency>
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-jwt</artifactId>
-		</dependency>
+		</dependency> -->
 		<!-- 安全支持 -->
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>

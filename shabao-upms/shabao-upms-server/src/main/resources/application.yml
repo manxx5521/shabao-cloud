@@ -1,13 +1,3 @@
-spring:
-  application:
-    name: shabao-upms
-  datasource:
-    name: test
-    url: jdbc:mysql://127.0.0.1:3306/shabao_cloud?useUnicode=true&characterEncoding=utf8
-    username: master
-    password: 19911105man
-    driver-class-name: com.mysql.jdbc.Driver
-    
 server:
   port: 9011
   
@@ -18,6 +8,16 @@ eureka:
       defaultZone: http://user:123@localhost:8761/eureka/
   instance:
     prefer-ip-address: true #服务端管理界面显示ip地址
+
+spring:
+  application:
+    name: shabao-upms
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://47.91.220.42:3306/shabao_test?useUnicode=true&characterEncoding=utf8&useSSL=false
+    username: master
+    password: 19911105man
+    
     
 #mybatis
 mybatis:
