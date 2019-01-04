@@ -8,6 +8,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.core.userdetails.User;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.oauth2.common.DefaultOAuth2AccessToken;
 import org.springframework.security.oauth2.common.OAuth2AccessToken;
 import org.springframework.security.oauth2.config.annotation.builders.InMemoryClientDetailsServiceBuilder;
@@ -34,6 +35,10 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
 	/**自定义配置信息*/
 	@Autowired
 	OauthConfig config;
+	
+	@Autowired    
+    private BCryptPasswordEncoder passwordEncoder;
+	
 	// 认证管理器
 	@Autowired
 	private AuthenticationManager authenticationManager;
@@ -47,7 +52,7 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
 
 		oauthServer.tokenKeyAccess("permitAll()").checkTokenAccess("isAuthenticated()");
 		//解决访问oauth/token报401
-//		oauthServer.allowFormAuthenticationForClients();
+		oauthServer.allowFormAuthenticationForClients();
 	}
 
 	// 配置OAuth2的客户端相关信息,配置客户端认证方式以及客户端连接参数设置
@@ -65,11 +70,14 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
 		InMemoryClientDetailsServiceBuilder clientDetail=clients.inMemory();
 		for(Client detail:config.getClient()) {
 			clientDetail.withClient(detail.getClientId())
-			.secret(detail.getClientSecret())
+			.secret(passwordEncoder.encode(detail.getClientSecret()))
 			// 该client允许的授权类型
 			.authorizedGrantTypes("password", "authorization_code", "refresh_token")
 			// 允许的授权范围
-			.scopes("app");
+			.scopes("app")
+			.autoApprove(true)//自动授权
+			//.redirectUris("http://localhost:8080/shabao-admin/login")//回调地址
+			;
 		}
 		
 	}

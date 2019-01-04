@@ -1,7 +1,6 @@
 package com.xiaoshabao.auth.config;
 
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableResourceServer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.ResourceServerConfigurerAdapter;
 
@@ -16,7 +15,7 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 						(request, response, authException) -> response.sendError(HttpServletResponse.SC_UNAUTHORIZED))
 				.and().authorizeRequests().anyRequest().authenticated().and().httpBasic();
 	}*/
-	
+	/*
 	// 配置安全策略
 		@Override
 		public void configure(HttpSecurity http) throws Exception {
@@ -35,5 +34,5 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 			// 排除该路径角色认证 注意顺序自上而下
 			// .antMatchers("/**").hasRole("USER")
 			;
-		}
+		}*/
 }

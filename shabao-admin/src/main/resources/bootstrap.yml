@@ -41,8 +41,20 @@ spring:
       max-active: 20
     
 security:
+  basic:
+    enabled: false
   oauth2:
+    client:
+      clientId: shabao
+      clientSecret: 123456
+      accessTokenUri: http://localhost:8080/shabao-auth/oauth/token
+      userAuthorizationUri: http://localhost:8080/shabao-auth/oauth/authorize
     resource:
-      id: order-service
-      user-info-uri: http://localhost:9001/uaa/user
+      id: admin-service
+      userInfoUri: http://localhost:8080/shabao-auth/user
       prefer-token-info: false
+      
+logging:
+  level:
+    root: DEBUG
+  path: E:/log

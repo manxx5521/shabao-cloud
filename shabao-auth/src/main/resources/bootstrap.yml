@@ -43,3 +43,7 @@ security:
 #management:
 #  security:
 #    enabled: false
+
+logging:
+  level:
+    root: DEBUG

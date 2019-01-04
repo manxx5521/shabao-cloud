@@ -9,6 +9,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="keywords" content="统一登录中心">
 <meta name="description" content="统一登录中心">
+<meta name="Authorization" content="${Authorization}"/>
 <!--[if lt IE 9]>
 	<script src="//cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
     <script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
@@ -50,8 +51,9 @@
 				<form method="post" name="loginform" id="loginform">
 					<h4 class="no-margins">登录：</h4>
 					<p class="m-t-md">登录到H+后台主题UI框架</p>
-					<input name="user_id" type="text" class="form-control uname" placeholder="用户名" /> 
+					<input name="username" type="text" class="form-control uname" placeholder="用户名" /> 
 					<input name="password" type="password" class="form-control pword m-b" placeholder="密码" /> <a href="">忘记密码了？</a>
+					<input name="grant_type" type="hidden" class="form-control pword m-b" value="password"/>
 					<button class="btn btn-success btn-block" type="button">登录</button>
 				</form>
 			</div>
@@ -63,6 +65,36 @@
 	</div>
 	<script src="${ctx}/resources/plugins/jquery/jquery-1.12.4.min.js"></script>
 	<script src="${ctx}/resources/plugins/bootstrap/js/bootstrap.min.js"></script>
-	<script src="${ctx}/resources/login/login.js"></script>
+	<script>
+	  	$(function(){
+	  		$('#loginform button').click(function(){
+	  			var formdata = $("#loginform").serialize();
+	  			var Authorization ="Basic "+$("meta[name='Authorization']").attr("content");
+	  			$.ajax({
+					type : "POST",
+					url : "http://localhost:8080/shabao-auth/oauth/token",
+					data:formdata,
+					dataType : "json",
+					beforeSend: function(request) {
+						request.setRequestHeader("Authorization", Authorization);
+                    },
+					success : function(data) {
+						if (!!data.error) {
+							alert(data.error)
+						}else{
+							window.location.href="http://localhost:8080/shabao-admin/index?access_token="+data.access_token;
+						}
+					},
+					error:function(XMLHttpRequest, textStatus, errorThrown) {
+						//console.log(errorThrown)
+						alert('系统错误');
+					}
+				});
+	  		})
+	  	})
+	  
+	  
+	  </script>
+	
 </body>
 </html>
