@@ -47,6 +47,10 @@ zuul:
     upms:
       path: /upms/**
       serviceId: shabao-upms
+
+ribbon:
+  ReadTimeout: 3000
+  ConnectTimeout: 3000
     
       
 custom:
