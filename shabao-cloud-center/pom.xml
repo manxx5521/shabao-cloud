@@ -5,9 +5,7 @@
     <artifactId>shabao-cloud</artifactId>
     <version>0.0.1-SNAPSHOT</version>
   </parent>
-  <artifactId>shabao-center</artifactId>
-  
-  <dependencies>
+  <artifactId>shabao-cloud-center</artifactId><dependencies>
 		<!--增加eureka-server的依赖 -->
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>

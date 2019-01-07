@@ -23,12 +23,14 @@
 	</parent>
 
 	<modules>
-		<module>shabao-center</module>
 		<module>shabao-admin</module>
 		<module>shabao-common</module>
 		<module>shabao-gate</module>
 		<module>shabao-config</module>
 		<module>shabao-auth</module>
+		<module>shabao-cloud-blog</module>
+		<module>shabao-cloud-gateAuth</module>
+		<module>shabao-cloud-center</module>
 	</modules>
 
 	<!--依赖管理，用于管理spring-cloud的依赖 -->
