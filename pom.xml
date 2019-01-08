@@ -11,6 +11,7 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<java.version>1.8</java.version>
+		<shabao.version>0.0.1</shabao.version>
 	</properties>
 
 	<parent>

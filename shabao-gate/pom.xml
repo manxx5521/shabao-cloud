@@ -4,7 +4,7 @@
 	<parent>
 		<groupId>com.xiaoshabao</groupId>
 		<artifactId>shabao-cloud</artifactId>
-		<version>0.0.1-SNAPSHOT</version>
+		<version>0.0.1</version>
 	</parent>
 	<artifactId>shabao-gate</artifactId>
 	<name>zuul项目</name>
