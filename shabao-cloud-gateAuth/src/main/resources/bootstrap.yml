@@ -62,4 +62,5 @@ custom:
 logging:
   level:
     org.springframework.cloud.gateway: debug
+  path: /app/data/logs
     
