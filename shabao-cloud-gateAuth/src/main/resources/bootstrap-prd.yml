@@ -1,3 +1,4 @@
+#此文件会在构建时覆盖到bootstrap.yml
 server:
   port: 8080
 
@@ -28,9 +29,9 @@ spring:
     password: 19911105man
     driver-class-name: com.mysql.jdbc.Driver
   redis:
-    database: 1
+    database: 10
     port: 6379
-    host: 47.75.206.89
+    host: 127.0.0.1
     password: 19911105man
     pool:
       max-active: 20
