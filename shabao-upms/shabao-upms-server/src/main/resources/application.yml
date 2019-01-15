@@ -14,7 +14,7 @@ spring:
     name: shabao-upms
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://47.91.220.42:3306/shabao_test?useUnicode=true&characterEncoding=utf8&useSSL=false
+    url: jdbc:mysql://47.75.206.89:3306/shabao_test?useUnicode=true&characterEncoding=utf8&useSSL=false
     username: master
     password: 19911105man
     
