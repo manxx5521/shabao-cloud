@@ -6,7 +6,7 @@ eureka:
   client:
     serviceUrl:
 #      defaultZone: http://localhost:8761/eureka/ #非认证模式
-      defaultZone: http://user:123@localhost:8761/eureka/
+      defaultZone: http://user:123@47.75.206.89:8761/eureka/
   instance:
     prefer-ip-address: true #服务端管理界面显示ip地址
 
@@ -24,14 +24,14 @@ spring:
       password: 123
   datasource:
     name: test
-    url: jdbc:mysql://127.0.0.1:3306/shabao_blog?useUnicode=true&characterEncoding=utf8
+    url: jdbc:mysql://47.75.206.89:3306/shabao_blog?useUnicode=true&characterEncoding=utf8
     username: master
     password: 19911105man
     driver-class-name: com.mysql.jdbc.Driver
   redis:
     database: 10
     port: 6379
-    host: 127.0.0.1
+    host: 47.75.206.89
     password: 19911105man
     pool:
       max-active: 20
