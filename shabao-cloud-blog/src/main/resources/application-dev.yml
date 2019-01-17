@@ -29,6 +29,20 @@ spring:
       additional-paths: src/main/java #需要重启的目录
       exclude: static/**,public/**,templates/** #不需要重启的目录
 
+security:
+  basic:
+    enabled: false
+  oauth2:
+    client:
+      clientId: shabao
+      clientSecret: 123456
+      accessTokenUri: http://localhost:8080/shabao-gateauth/oauth/token
+      userAuthorizationUri: http://localhost:8080/shabao-gateauth/oauth/authorize
+    resource:
+      id: admin-service
+      userInfoUri: http://localhost:8080/shabao-gateauth/user
+      prefer-token-info: false
+
 logging:
   level:
     root: INFO

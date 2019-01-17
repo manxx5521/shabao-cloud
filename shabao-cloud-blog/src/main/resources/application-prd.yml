@@ -24,6 +24,20 @@ spring:
     pool:
       max-active: 20
 
+security:
+  basic:
+    enabled: false
+  oauth2:
+    client:
+      clientId: shabao
+      clientSecret: 123456
+      accessTokenUri: http://47.75.206.89/shabao-gateauth/oauth/token
+      userAuthorizationUri: http://47.75.206.89/shabao-gateauth/oauth/authorize
+    resource:
+      id: admin-service
+      userInfoUri: http://47.75.206.89/shabao-gateauth/user
+      prefer-token-info: false
+
 logging:
   level:
     root: INFO
