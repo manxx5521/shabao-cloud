@@ -44,6 +44,7 @@ zuul:
     fweb:
       path: /f/**
       serviceId: shabao-blog
+      stripPrefix: false #不去除当前拦截的记录
     blog:
       path: /blog/**
       serviceId: shabao-blog
