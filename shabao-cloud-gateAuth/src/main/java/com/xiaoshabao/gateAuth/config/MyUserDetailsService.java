@@ -3,6 +3,7 @@ package com.xiaoshabao.gateAuth.config;
 import java.util.Collection;
 import java.util.HashSet;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
@@ -18,33 +19,26 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class MyUserDetailsService implements UserDetailsService {
+	
+	@Autowired
+	MyUserDetailDao dao;
 
 	@Override
 	public UserDetails loadUserByUsername(String name) throws UsernameNotFoundException {
-
-		if ("admin".equalsIgnoreCase(name)) {
-			User user = mockUser();
-			return user;
-
-		}else {
+		
+		UserInfo userInfo=dao.getUser(name);
+		if(userInfo==null) {
 			throw  new UsernameNotFoundException("用户["+name+"]不存在");
 		}
-	}
-
-	/**
-	 * 模拟用户信息
-	 * @return
-	 */
-	private User mockUser() {
-
 		Collection<GrantedAuthority> authorities = new HashSet<>();
 		authorities.add(new SimpleGrantedAuthority("admin"));// 用户所拥有的角色信息
 		
 		BCryptPasswordEncoder encode = new BCryptPasswordEncoder();  
-		String password = encode.encode("123456"); 
-		User user = new User("admin", password, authorities);
+		String password = encode.encode("qwer1234");
+		User user = new User(userInfo.getUserName(), userInfo.getPassword(), authorities);
 		return user;
 
+		
 	}
 
 }

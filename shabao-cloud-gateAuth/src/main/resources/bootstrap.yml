@@ -22,8 +22,7 @@ spring:
       name: user
       password: 123
   datasource:
-    name: test
-    url: jdbc:mysql://47.75.206.89:3306/shabao_blog?useUnicode=true&characterEncoding=utf8
+    url: jdbc:mysql://47.75.206.89:3306/shabao_blog_test?useUnicode=true&characterEncoding=utf8
     username: master
     password: 19911105man
     driver-class-name: com.mysql.jdbc.Driver
@@ -38,6 +37,12 @@ spring:
 #配置路由
 zuul:
   routes:
+    gweb:
+      path: /
+      serviceId: shabao-blog
+    fweb:
+      path: /f/**
+      serviceId: shabao-blog
     blog:
       path: /blog/**
       serviceId: shabao-blog

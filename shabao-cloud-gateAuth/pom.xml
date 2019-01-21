@@ -48,10 +48,21 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-redis</artifactId>
 		</dependency>
+		
+		<!-- 数据库驱动 无需添加版本号 -->
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+		<!-- Spring JDBC相关包 -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-jdbc</artifactId>
+		</dependency>
 
 		<!-- config支持 <dependency> <groupId>org.springframework.cloud</groupId> 
 			<artifactId>spring-cloud-config-server</artifactId> </dependency> -->
-
 
 	</dependencies>
 	<build>
