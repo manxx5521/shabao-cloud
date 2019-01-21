@@ -43,6 +43,7 @@ zuul:
     fweb:
       path: /f/**
       serviceId: shabao-blog
+      stripPrefix: false
     blog:
       path: /blog/**
       serviceId: shabao-blog
