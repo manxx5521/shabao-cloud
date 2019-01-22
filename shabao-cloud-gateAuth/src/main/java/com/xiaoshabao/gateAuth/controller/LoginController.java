@@ -1,8 +1,5 @@
 package com.xiaoshabao.gateAuth.controller;
 
-import java.nio.charset.StandardCharsets;
-import java.util.Base64;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,9 +17,8 @@ public class LoginController {
 	 * @return
 	 */
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
-	public String login(ModelMap model, String clientId,String clientSecret) {
-		String src = clientId+ ":" + clientSecret;
-		model.put("Authorization", Base64.getEncoder().encodeToString(src.getBytes(StandardCharsets.UTF_8)));
+	public String login(ModelMap model, String authorization) {
+		model.put("Authorization", authorization);
 		return "login";
 	}
 

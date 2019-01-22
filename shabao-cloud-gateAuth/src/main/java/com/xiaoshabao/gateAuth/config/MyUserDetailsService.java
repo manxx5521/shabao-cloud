@@ -10,7 +10,6 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 /**
@@ -33,8 +32,8 @@ public class MyUserDetailsService implements UserDetailsService {
 		Collection<GrantedAuthority> authorities = new HashSet<>();
 		authorities.add(new SimpleGrantedAuthority("admin"));// 用户所拥有的角色信息
 		
-		BCryptPasswordEncoder encode = new BCryptPasswordEncoder();  
-		String password = encode.encode("qwer1234");
+		/*BCryptPasswordEncoder encode = new BCryptPasswordEncoder();  
+		String password = encode.encode("qwer1234");*/
 		User user = new User(userInfo.getUserName(), userInfo.getPassword(), authorities);
 		return user;
 

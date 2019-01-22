@@ -60,6 +60,12 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-jdbc</artifactId>
 		</dependency>
+		
+		<!-- 引入freeMarker的依赖包 -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-freemarker</artifactId>
+		</dependency>
 
 		<!-- config支持 <dependency> <groupId>org.springframework.cloud</groupId> 
 			<artifactId>spring-cloud-config-server</artifactId> </dependency> -->

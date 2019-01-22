@@ -33,6 +33,8 @@ spring:
     password: 19911105man
     pool:
       max-active: 20
+  freemarker:
+    request-context-attribute: request
       
 #配置路由
 zuul:
