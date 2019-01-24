@@ -82,7 +82,8 @@
 						if (!!data.error) {
 							alert(data.error)
 						}else{
-							window.location.href="http://localhost:8080/shabao-admin/index?access_token="+data.access_token;
+							//"http://localhost:8080/shabao-admin/index?access_token="
+							window.location.href='${uri}'+'?access_token='+data.access_token;
 						}
 					},
 					error:function(XMLHttpRequest, textStatus, errorThrown) {

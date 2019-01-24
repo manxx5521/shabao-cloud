@@ -34,7 +34,7 @@ security:
       accessTokenUri: http://47.75.206.89/shabao-gateauth/oauth/token
       userAuthorizationUri: http://47.75.206.89/shabao-gateauth/oauth/authorize
     resource:
-      id: admin-service
+      id: blog-service
       userInfoUri: http://47.75.206.89/shabao-gateauth/user
       prefer-token-info: false
 

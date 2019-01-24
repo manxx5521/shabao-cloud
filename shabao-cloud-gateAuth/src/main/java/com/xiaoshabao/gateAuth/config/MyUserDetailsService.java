@@ -30,8 +30,12 @@ public class MyUserDetailsService implements UserDetailsService {
 			throw  new UsernameNotFoundException("用户["+name+"]不存在");
 		}
 		Collection<GrantedAuthority> authorities = new HashSet<>();
-		authorities.add(new SimpleGrantedAuthority("admin"));// 用户所拥有的角色信息
-		
+		dao.getRole(userInfo.getUserId()).forEach(role->{
+			authorities.add(new SimpleGrantedAuthority("ROLE_"+role.getRoleValue()));// 用户所拥有的角色信息,角色信息以ROLE_开头
+			dao.getPermission(role.getRoleId()).forEach(permission->{
+				authorities.add(new SimpleGrantedAuthority(permission.getPermissionValue()));//存放权限信息
+			});
+		});
 		/*BCryptPasswordEncoder encode = new BCryptPasswordEncoder();  
 		String password = encode.encode("qwer1234");*/
 		User user = new User(userInfo.getUserName(), userInfo.getPassword(), authorities);

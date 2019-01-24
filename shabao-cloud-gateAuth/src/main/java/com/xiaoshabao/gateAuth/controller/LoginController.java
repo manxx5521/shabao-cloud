@@ -17,8 +17,9 @@ public class LoginController {
 	 * @return
 	 */
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
-	public String login(ModelMap model, String authorization) {
+	public String login(ModelMap model, String authorization,String uri) {
 		model.put("Authorization", authorization);
+		model.put("uri", uri);
 		return "login";
 	}
 

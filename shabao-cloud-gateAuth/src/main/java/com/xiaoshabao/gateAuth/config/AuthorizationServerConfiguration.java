@@ -75,7 +75,7 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
 			// 允许的授权范围
 			.scopes("app")
 			.autoApprove(true)//自动授权
-			//.redirectUris("http://localhost:8080/shabao-admin/login")//回调地址
+			.redirectUris("http://localhost:8080/blog/user")//回调地址
 			;
 		}
 		

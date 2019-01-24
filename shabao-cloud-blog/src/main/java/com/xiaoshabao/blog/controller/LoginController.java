@@ -39,6 +39,7 @@ public class LoginController extends BaseController {
 		String src = clientId+ ":" + clientSecret;
 //		model.put("Authorization", Base64.getEncoder().encodeToString(src.getBytes(StandardCharsets.UTF_8)));
 		attr.addAttribute("authorization", Base64.getEncoder().encodeToString(src.getBytes(StandardCharsets.UTF_8)));
+		attr.addAttribute("uri", "/blog/user");
 		return new ModelAndView("redirect:http://localhost:8080/login",model);
 //		return skin + Views.LOGIN;
 	}

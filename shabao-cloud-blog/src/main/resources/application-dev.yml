@@ -39,7 +39,7 @@ security:
       accessTokenUri: http://localhost:8080/shabao-gateauth/oauth/token
       userAuthorizationUri: http://localhost:8080/shabao-gateauth/oauth/authorize
     resource:
-      id: admin-service
+      id: blog-service
       userInfoUri: http://localhost:8080/shabao-gateauth/user
       prefer-token-info: false
 

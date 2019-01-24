@@ -40,6 +40,12 @@
 			<artifactId>spring-security-data</artifactId>
 		</dependency>
 		
+		<!-- Spring JDBC相关包 -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-jdbc</artifactId>
+		</dependency>
+		
 		
 
 
