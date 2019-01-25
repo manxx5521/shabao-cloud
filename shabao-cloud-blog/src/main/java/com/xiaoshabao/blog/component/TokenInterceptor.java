@@ -32,7 +32,6 @@ public class TokenInterceptor implements HandlerInterceptor  {
 				AccountProfile profile=contentHolder.getProfile();
 				request.setAttribute("profile", profile);
 			}
-			
 		} catch (Exception e) {
 			logger.error("传递token时错误");
 			e.printStackTrace();
