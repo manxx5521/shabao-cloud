@@ -31,11 +31,12 @@ security:
     client:
       clientId: shabao
       clientSecret: 123456
-      accessTokenUri: http://47.75.206.89/shabao-gateauth/oauth/token
-      userAuthorizationUri: http://47.75.206.89/shabao-gateauth/oauth/authorize
+      loginCenterUri: http://www.xiaoshabao.com/login
+      accessTokenUri: http://www.xiaoshabao.com/shabao-gateauth/oauth/token
+      userAuthorizationUri: http://www.xiaoshabao.com/shabao-gateauth/oauth/authorize
     resource:
       id: blog-service
-      userInfoUri: http://47.75.206.89/shabao-gateauth/user
+      userInfoUri: http://www.xiaoshabao.com/shabao-gateauth/user
       prefer-token-info: false
 
 logging:

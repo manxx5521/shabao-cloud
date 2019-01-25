@@ -36,6 +36,7 @@ security:
     client:
       clientId: shabao
       clientSecret: 123456
+      loginCenterUri: http://localhost:8080/login
       accessTokenUri: http://localhost:8080/shabao-gateauth/oauth/token
       userAuthorizationUri: http://localhost:8080/shabao-gateauth/oauth/authorize
     resource:

@@ -26,6 +26,8 @@ public class LoginController extends BaseController {
 	private String clientId;
 	@Value("${security.oauth2.client.clientSecret}")
 	private String clientSecret;
+	@Value("${security.oauth2.client.loginCenterUri}")
+	private String loginCenterUri;
 
 
 	/**
@@ -40,7 +42,7 @@ public class LoginController extends BaseController {
 //		model.put("Authorization", Base64.getEncoder().encodeToString(src.getBytes(StandardCharsets.UTF_8)));
 		attr.addAttribute("authorization", Base64.getEncoder().encodeToString(src.getBytes(StandardCharsets.UTF_8)));
 		attr.addAttribute("uri", "/blog/user");
-		return new ModelAndView("redirect:http://localhost:8080/login",model);
+		return new ModelAndView("redirect:"+loginCenterUri,model);
 //		return skin + Views.LOGIN;
 	}
 
