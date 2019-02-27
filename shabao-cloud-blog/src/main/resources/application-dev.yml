@@ -9,10 +9,10 @@ eureka:
 spring:
   profiles: dev
   datasource:
-    driverClassName: com.mysql.jdbc.Driver
     url: jdbc:mysql://47.75.206.89:3306/shabao_blog_test?useUnicode=true&characterEncoding=utf8&useSSL=false
     username: master
     password: 19911105man
+    driver-class-name: com.mysql.jdbc.Driver
   jpa:
     properties:
       hibernate.search.default.indexBase: E:/test/cun/indexes
