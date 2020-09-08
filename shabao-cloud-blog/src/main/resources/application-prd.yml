@@ -46,6 +46,6 @@ security:
 
 logging:
   level:
-    root: INFO
+    root: DEBUG
     com.xiaoshabao.blog.mapper: DEBUG
   path: /app/data/logs
