@@ -1,0 +1,42 @@
+server:
+  port: 8080
+
+eureka:
+  client:
+    serviceUrl:
+#      defaultZone: http://localhost:8761/eureka/ #非认证模式
+      defaultZone: http://user:123@localhost:8761/eureka/
+  instance:
+    prefer-ip-address: true #服务端管理界面显示ip地址
+
+spring:
+  application:
+    name: shabao-gateway
+  profiles:
+    active: native #设置再本地的 resources目录下读取文件
+  #开启当前安全认证后，需要密码才能链接配置中心  
+  security:
+    basic:
+      enabled: true
+    user:
+      name: user
+      password: 123
+  freemarker:
+    request-context-attribute: request
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true #开启服务注册和发现的功能，并且spring cloud gateway自动根据服务发现为每一个服务创建了一个router，这个router将以服务名开头的请求路径转发到对应的服务
+          lowerCaseServiceId: true #将请求路径上的服务名配置为小写（因为服务注册的时候，向注册中心注册时将服务名转成大写的了）
+      
+management:
+  security:
+    enabled: false
+  endpoints.web.exposure.include: '*'
+
+logging:
+  level:
+    org.springframework.cloud.gateway: debug
+  path: /app/data/logs
+    

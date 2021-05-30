@@ -1,0 +1,35 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.xiaoshabao</groupId>
+		<artifactId>shabao-cloud</artifactId>
+		<version>1.0.0</version>
+	</parent>
+	<artifactId>shabao-cloud-auth</artifactId>
+	<packaging>pom</packaging>
+	<modules>
+		<module>shabao-cloud-auth-eureka</module>
+		<module>shabao-cloud-auth-core</module>
+	</modules>
+	<properties>
+		<shabao-auth.version>1.0.0</shabao-auth.version>
+	</properties>
+	<!--依赖管理，用于管理子项目的依赖 -->
+	<dependencyManagement>
+		<dependencies>
+			<!--增加自身的依赖 begin -->
+			<dependency>
+				<groupId>com.xiaoshabao</groupId>
+				<artifactId>shabao-cloud-auth-core</artifactId>
+				<version>${shabao-auth.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.xiaoshabao</groupId>
+				<artifactId>shabao-upms-cloud</artifactId>
+				<version>${shabao-auth.version}</version>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+</project>
