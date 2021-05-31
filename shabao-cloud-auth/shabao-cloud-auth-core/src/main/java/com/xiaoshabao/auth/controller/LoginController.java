@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class LoginController {
 
 	/**
-	 * 跳转登录页
+	 * 跳转登录页 
 	 * 
 	 * @return
 	 */
