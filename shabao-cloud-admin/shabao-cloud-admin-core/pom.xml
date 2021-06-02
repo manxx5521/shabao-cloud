@@ -9,11 +9,28 @@
 	</parent>
 	<artifactId>shabao-cloud-admin-core</artifactId>
 	<dependencies>
-		<!-- oauth2 客户端实现 -->
 		<dependency>
-			<groupId>com.xiaoshabao</groupId>
-			<artifactId>shabao-base-oauth-resource</artifactId>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
+		
+		
+		<!-- security 配置支持 -->
+	    <dependency>
+	        <groupId>org.springframework.security</groupId>
+	        <artifactId>spring-security-config</artifactId>
+	    </dependency>
+		<!-- oauth2 资源服务支持 -->
+		<dependency>
+	        <groupId>org.springframework.security</groupId>
+	        <artifactId>spring-security-oauth2-resource-server</artifactId>
+	    </dependency>
+	    <!-- oauth2 jwt支持 -->
+	    <dependency>
+	        <groupId>org.springframework.security</groupId>
+	        <artifactId>spring-security-oauth2-jose</artifactId>
+	    </dependency>
+	   
 
 	</dependencies>
 </project>

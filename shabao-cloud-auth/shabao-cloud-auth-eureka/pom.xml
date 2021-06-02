@@ -9,10 +9,10 @@
 	</parent>
 	<artifactId>shabao-cloud-auth-eureka</artifactId>
 	<dependencies>
-		<dependency>
+		<!-- <dependency>
 			<groupId>com.xiaoshabao</groupId>
 			<artifactId>shabao-cloud-auth-core</artifactId>
-		</dependency>
+		</dependency> -->
 		<!--增加eureka-client的依赖 -->
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
@@ -23,6 +23,23 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-actuator</artifactId>
 		</dependency>
+		
+		<!-- springboot-web支持 -->
+		<dependency>
+	      <groupId>org.springframework.boot</groupId>
+	      <artifactId>spring-boot-starter-web</artifactId>
+	    </dependency>
+		<!-- oauth2支持 -->
+		<dependency>
+			<groupId>org.springframework.security.oauth.boot</groupId>
+			<artifactId>spring-security-oauth2-autoconfigure</artifactId>
+		</dependency>
+		<!-- jwt支持 -->
+		<dependency>
+			<groupId>com.nimbusds</groupId>
+			<artifactId>nimbus-jose-jwt</artifactId>
+		</dependency>
+		
 
 	</dependencies>
 

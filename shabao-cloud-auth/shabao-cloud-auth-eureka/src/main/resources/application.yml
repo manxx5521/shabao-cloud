@@ -11,7 +11,7 @@ eureka:
 
 spring:
   application:
-    name: shabao-gateway
+    name: shabao-auth
   profiles:
     active: native #设置再本地的 resources目录下读取文件
   #开启当前安全认证后，需要密码才能链接配置中心  
@@ -23,17 +23,27 @@ spring:
       password: 123
   freemarker:
     request-context-attribute: request
-  cloud:
-    gateway:
-      discovery:
-        locator:
-          enabled: true #开启服务注册和发现的功能，并且spring cloud gateway自动根据服务发现为每一个服务创建了一个router，这个router将以服务名开头的请求路径转发到对应的服务
-          lowerCaseServiceId: true #将请求路径上的服务名配置为小写（因为服务注册的时候，向注册中心注册时将服务名转成大写的了）
-      
-management:
-  security:
-    enabled: false
-  endpoints.web.exposure.include: '*'
+  datasource:
+    url: jdbc:mysql://47.75.206.89:3306/shabao_blog_test?useUnicode=true&characterEncoding=utf8&useSSL=false
+    username: master
+    password: 19911105man
+    driver-class-name: com.mysql.jdbc.Driver
+  redis:
+    database: 1
+    port: 6379
+    host: 47.75.206.89
+    password: 19911105man
+    pool:
+      max-active: 20
+custom:
+  oauth2:
+    client:
+      - {clientId: shabao, clientSecret: 123456, grantType: password}
+      - {clientId: shabao2, clientSecret: 123456, grantType: password}
+#management:
+#  security:
+#    enabled: false
+#  endpoints.web.exposure.include: '*'
 
 logging:
   level:
