@@ -1,0 +1,28 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.xiaoshabao</groupId>
+		<artifactId>shabao-cloud</artifactId>
+		<version>1.0.0</version>
+	</parent>
+	<artifactId>shabao-cloud-config</artifactId>
+	<packaging>pom</packaging>
+	<modules>
+		<module>shabao-cloud-config-eureka</module>
+	</modules>
+	<properties>
+		<shabao-config.version>1.0.0</shabao-config.version>
+	</properties>
+	<!--依赖管理，用于管理子项目的依赖 -->
+	<dependencyManagement>
+		<dependencies>
+			<!--增加自身的依赖 begin -->
+			<dependency>
+				<groupId>com.xiaoshabao</groupId>
+				<artifactId>shabao-cloud-config-eureka</artifactId>
+				<version>${shabao-config.version}</version>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+</project>

@@ -18,6 +18,7 @@
 		<module>shabao-config</module>
 		<module>shabao-cloud-auth</module>
 		<module>shabao-cloud-admin</module>
+		<module>shabao-cloud-config</module>
 	</modules>
 
 </project>
