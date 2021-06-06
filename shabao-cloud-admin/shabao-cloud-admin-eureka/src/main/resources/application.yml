@@ -13,20 +13,16 @@ spring:
   application:
     name: shabao-admin
   profiles:
-    active: native #设置再本地的 resources目录下读取文件
-  #开启当前安全认证后，需要密码才能链接配置中心  
-  security:
-    basic:
-      enabled: true
-    user:
-      name: user
-      password: 123
-  freemarker:
-    request-context-attribute: request
-
-
-logging:
-  level:
-    org.springframework.cloud.gateway: debug
-  path: /app/data/logs
-    
+    active: @profiles.active@
+  cloud:
+    config:
+      discovery:
+        enabled: true
+        serviceId: shabao-config
+      #获取不到配置，直接结束程序
+      fail-fast: true
+      retry:
+        max-attempts: 3 #重试次数
+  config:
+    #直接访问可以设置地址：http://localhost:8090
+    import: configserver:http://shabao-config

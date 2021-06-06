@@ -7,11 +7,6 @@
   </parent>
   <artifactId>shabao-cloud-config-eureka</artifactId>
   <dependencies>
-		<!-- <dependency>
-			<groupId>com.xiaoshabao</groupId>
-			<artifactId>shabao-cloud-auth-core</artifactId>
-		</dependency> -->
-		<!--增加eureka-client的依赖 -->
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
@@ -21,7 +16,11 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-actuator</artifactId>
 		</dependency>
-		
+		<!-- 配置中心服务端 -->
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-config-server</artifactId>
+		</dependency>
 
 	</dependencies>
 

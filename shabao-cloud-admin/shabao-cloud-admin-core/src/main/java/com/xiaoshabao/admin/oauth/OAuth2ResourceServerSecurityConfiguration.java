@@ -10,29 +10,30 @@ import org.springframework.security.config.annotation.web.configurers.oauth2.ser
 import org.springframework.security.oauth2.jwt.JwtDecoder;
 import org.springframework.security.oauth2.jwt.NimbusJwtDecoder;
 
-
 @EnableWebSecurity
 public class OAuth2ResourceServerSecurityConfiguration extends WebSecurityConfigurerAdapter {
-
+  
+  @Value("${app.domain}")
+  private String domain;
 
   @Override
   protected void configure(HttpSecurity http) throws Exception {
     // @formatter:off
     http
-      .authorizeRequests((authorizeRequests) -> 
-        authorizeRequests
-          .antMatchers(HttpMethod.GET, "/message/**").hasAuthority("SCOPE_message:read")
-          .antMatchers(HttpMethod.POST, "/message/**").hasAuthority("SCOPE_message:write")
-          .anyRequest().authenticated()
-      )
+      .authorizeRequests((authorizeRequests) -> authorizeRequests.mvcMatchers("/login").permitAll()
+        .anyRequest().authenticated())
       .oauth2ResourceServer(OAuth2ResourceServerConfigurer::jwt)
-      .formLogin()/*.loginPage("http://localhost:9010/login")*/;
+      // 登录页面url
+      .formLogin().loginPage("/login");
     // @formatter:on
   }
-  @Value("${spring.security.oauth2.resourceserver.jwt.jwk-set-uri:http://localhost:9010}") 
-  String jwkSetUri;
+
+//  @Value("${spring.security.oauth2.resourceserver.jwt.jwk-set-uri:http://localhost:9010}")
+//  String jwkSetUri;
+
   @Bean
   JwtDecoder jwtDecoder() {
-    return NimbusJwtDecoder.withJwkSetUri(this.jwkSetUri).build();
+//    return NimbusJwtDecoder.withJwkSetUri(domain+"/auth").build();
+    return NimbusJwtDecoder.withJwkSetUri(domain+"/SHABAO-AUTH").build();
   }
 }

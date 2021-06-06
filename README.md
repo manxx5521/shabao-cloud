@@ -29,14 +29,15 @@ shabao-cloud
 └── shabao-cloud-admin -- 程序管理服务[9030]
      ├── shabao-cloud-admin-core -- 核心包
      └── shabao-cloud-admin-eureka -- eureka实现
-└── shabao-cloud-auth -- 程序管理服务[9010]
+└── shabao-cloud-auth -- 授权服务[9010]
      ├── shabao-cloud-auth-core -- 核心包
      └── shabao-cloud-auth-eureka -- eureka实现
 ├── shabao-cloud-gateway -- 网关服务[8080]
 └── shabao-cloud-register -- 注册中心
      ├── shabao-cloud-register-eureka -- eureka实现[8761]
      └── shabao-cloud-register-nacos -- nacos实现[8848]
-└── shabao-cloud-config -- 网关服务[8090]
+└── shabao-cloud-config -- 配置中心服务[8090]
+     ├── shabao-cloud-config-eureka -- eureka实现[8090]
 
 shabao-upms -- 通用用户权限管理模块[9020]
      ├── shabao-upms-cloud -- 微服务实现

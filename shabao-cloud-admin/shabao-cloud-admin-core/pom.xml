@@ -13,7 +13,16 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
-		
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-jdbc</artifactId>
+		</dependency>
+		<!-- 数据库驱动 无需添加版本号 -->
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<scope>runtime</scope>
+		</dependency>
 		
 		<!-- security 配置支持 -->
 	    <dependency>
@@ -30,6 +39,7 @@
 	        <groupId>org.springframework.security</groupId>
 	        <artifactId>spring-security-oauth2-jose</artifactId>
 	    </dependency>
+	    
 	   
 
 	</dependencies>

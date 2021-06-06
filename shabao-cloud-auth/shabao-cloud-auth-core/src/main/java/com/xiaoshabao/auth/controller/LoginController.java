@@ -1,9 +1,11 @@
 package com.xiaoshabao.auth.controller;
 
+import java.nio.charset.StandardCharsets;
+import java.util.Base64;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.GetMapping;
 
 /**
  * 登录页
@@ -12,15 +14,28 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class LoginController {
 
 	/**
-	 * 跳转登录页 
-	 * 
-	 * @return
+	 * 登录页 
 	 */
-	@RequestMapping(value = "/login", method = RequestMethod.GET)
-	public String login(ModelMap model, String authorization,String uri) {
-		model.put("Authorization", authorization);
-		model.put("uri", uri);
+	@GetMapping(value = "/login")
+	public String login(ModelMap model, String clientId) {
+		model.put("Authorization", getBasicAuthorization(clientId));
 		return "login";
 	}
+	
+	/**
+   * 登录页 
+   */
+  @GetMapping(value = "/login",params= {"uri"})
+  public String login(ModelMap model, String clientId,String uri) {
+    model.put("Authorization", getBasicAuthorization(clientId));
+    model.put("uri", uri);
+    return "loginToUri";
+  }
+  
+  private String getBasicAuthorization(String clientId) {
+    String clientSecret="";
+    String src = clientId+ ":" + clientSecret;
+    return Base64.getEncoder().encodeToString(src.getBytes(StandardCharsets.UTF_8));
+  }
 
 }

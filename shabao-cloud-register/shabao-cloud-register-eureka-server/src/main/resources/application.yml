@@ -25,4 +25,8 @@ spring:
     user:
       name: user
       password: 123
+      
+logging:
+  level:
+    root: ERROR
 

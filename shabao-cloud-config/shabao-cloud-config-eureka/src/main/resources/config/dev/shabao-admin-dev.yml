@@ -1,0 +1,8 @@
+logging:
+  level:
+    root: DEBUG
+    com.xiaoshabao.blog.mapper: DEBUG
+    org.apache.tomcat: INFO
+    com.zaxxer.hikari: TRACE
+  file:
+    path: C:/logs

@@ -13,8 +13,10 @@ public class GatewayCofiguration {
   @Order
   public RouteLocator customizedRoutes(RouteLocatorBuilder builder) {
     return builder.routes().route(r -> r.path("/blog/**").filters(f -> f.stripPrefix(1)).uri("lb://SHABAO-BLOG"))
+      .route(r -> r.path("/login").uri("lb://SHABAO-AUTH"))
       .route(r -> r.path("/auth/**").filters(f -> f.stripPrefix(1)).uri("lb://SHABAO-AUTH"))
+      .route(r -> r.path("/admin/**").filters(f -> f.stripPrefix(1)).uri("lb://SHABAO-ADMIN"))
       .route(r -> r.path("/oss/**").filters(f -> f.stripPrefix(1)).uri("lb://SHABAO-OSS-CLOUD")).build();
   }
-
+  
 }

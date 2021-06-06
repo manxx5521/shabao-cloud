@@ -18,6 +18,11 @@
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
 		</dependency>
+		<!--spring cloud config的依赖 -->
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-config-client</artifactId>
+		</dependency>
 		<!--提供监控接口 -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -29,6 +34,16 @@
 	      <groupId>org.springframework.boot</groupId>
 	      <artifactId>spring-boot-starter-web</artifactId>
 	    </dependency>
+	    <!-- 基础包 -->
+		<dependency>
+			<groupId>com.xiaoshabao</groupId>
+			<artifactId>shabao-common</artifactId>
+		</dependency>
+	    <!-- 引入freeMarker的依赖包 -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-freemarker</artifactId>
+		</dependency>
 		<!-- oauth2支持 -->
 		<dependency>
 			<groupId>org.springframework.security.oauth.boot</groupId>

@@ -1,0 +1,26 @@
+app:
+  domain: http://localhost:8080
+  
+spring:
+  datasource:
+    driverClassName: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://47.75.206.89:3306/shabao_blog_test?useUnicode=true&characterEncoding=utf8&useSSL=false
+    username: master
+    password: 19911105man
+  redis:
+    database: 1
+    port: 6379
+    host: 47.75.206.89
+    password: 19911105man
+    pool:
+      max-active: 20
+  freemarker:
+    request-context-attribute: request
+    settings:
+      number_format: 0.##
+    
+
+logging:
+  level:
+    com.netflix.discovery: ERROR
+  
