@@ -11,8 +11,11 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+import javax.sql.DataSource;
+
 import com.nimbusds.jose.jwk.JWKSet;
 import com.nimbusds.jose.jwk.RSAKey;
+import com.xiaoshabao.auth.service.ClientDetailsService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -35,6 +38,7 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.E
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerEndpointsConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerSecurityConfigurer;
 import org.springframework.security.oauth2.provider.OAuth2Authentication;
+import org.springframework.security.oauth2.provider.client.JdbcClientDetailsService;
 import org.springframework.security.oauth2.provider.endpoint.FrameworkEndpoint;
 import org.springframework.security.oauth2.provider.token.DefaultAccessTokenConverter;
 import org.springframework.security.oauth2.provider.token.DefaultUserAuthenticationConverter;
@@ -65,31 +69,42 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Configuration
 public class AuthorizationServerConfiguration extends AuthorizationServerConfigurerAdapter {
 
-  AuthenticationManager authenticationManager;
+  private final AuthenticationManager authenticationManager;
 
-  KeyPair keyPair;
+  private final KeyPair keyPair;
 
-  boolean jwtEnabled;
+  private final  boolean jwtEnabled;
+  private final DataSource dataSource;
   
+  @Autowired
   public AuthorizationServerConfiguration(AuthenticationConfiguration authenticationConfiguration, KeyPair keyPair,
-    @Value("${security.oauth2.authorizationserver.jwt.enabled:true}") boolean jwtEnabled) throws Exception {
+    @Value("${security.oauth2.authorizationserver.jwt.enabled:true}") boolean jwtEnabled,DataSource dataSource) throws Exception {
 
     this.authenticationManager = authenticationConfiguration.getAuthenticationManager();
     this.keyPair = keyPair;
     this.jwtEnabled = jwtEnabled;
+    this.dataSource=dataSource;
   }
 
   @Override
   public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
-    // @formatter:off
-    clients.inMemory().withClient("reader").authorizedGrantTypes("password").secret("{noop}secret")
+    /* clients.inMemory().withClient("reader").authorizedGrantTypes("password").secret("{noop}secret")
       .scopes("message:read").accessTokenValiditySeconds(600_000_000).and()
       .withClient("shabao-admin")
       .authorizedGrantTypes("password").secret("{noop}secret")
       .scopes("none")
       .redirectUris("http://localhost:8080/admin/index").accessTokenValiditySeconds(600_000_000);
-
-    // @formatter:on   
+    */
+    clients.withClientDetails(clientDetailsService());
+  }
+  
+  public JdbcClientDetailsService clientDetailsService() {
+    JdbcClientDetailsService  clientDetailsService=new  JdbcClientDetailsService(dataSource);
+    String column="resource_ids, scope, authorized_grant_types, web_server_redirect_uri, authorities, access_token_validity, "
+      + "refresh_token_validity, additional_information, autoapprove";
+    clientDetailsService.setSelectClientDetailsSql("select client_id,client_secret, "+column+" from sys_cloud_client_details where client_id = ?");
+    clientDetailsService.setFindClientDetailsSql("select client_id, "+column+" from sys_cloud_client_details order by client_id");
+    return clientDetailsService;
   }
 
   /**对应于配置AuthorizationServer安全认证的相关信息，创建ClientCredentialsTokenEndpointFilter核心过滤器

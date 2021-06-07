@@ -48,12 +48,14 @@
 				</div>
 			</div>
 			<div class="col-sm-5">
-				<form method="post" name="loginform" id="loginform"  action="/token/form">
+				<form method="post" name="loginform" id="loginform"  action="${ctx}/auth/oauth/token">
 					<h4 class="no-margins">登录：</h4>
 					<p class="m-t-md">登录到H+后台主题UI框架</p>
 					<input name="username" type="text" class="form-control uname" placeholder="用户名" /> 
 					<input name="password" type="password" class="form-control pword m-b" placeholder="密码" /> <a href="">忘记密码了？</a>
 					<input name="grant_type" type="hidden" class="form-control pword m-b" value="password"/>
+					<input name="client_id" type="hidden" class="form-control pword m-b" value="${client_id}"/>
+					<input name="client_secret" type="hidden" class="form-control pword m-b" value="${client_secret}"/>
 					<button class="btn btn-success btn-block" type="submit">登录</button>
 					 <#if error??>
 			            <span style="color: red; ">${error}</span>

@@ -22,13 +22,12 @@ public class LoginController {
 	@GetMapping(value = "/login")
 	public ModelAndView login(ModelMap model, String clientId,String uri) {
 		model.put("Authorization", getBasicAuthorization(clientId));
-		 model.put("uri", "11");
+		 model.put("uri", "http://localhost:8080/admin/callback");
 		 model.put("client_id", clientId);
 		 model.put("client_secret", "secret");
 		return  new ModelAndView("/login", model);
 	}
 	
-
   
   private String getBasicAuthorization(String clientId) {
     String clientSecret="secret";

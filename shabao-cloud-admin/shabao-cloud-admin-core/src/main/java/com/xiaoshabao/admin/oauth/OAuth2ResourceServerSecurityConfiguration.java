@@ -20,11 +20,11 @@ public class OAuth2ResourceServerSecurityConfiguration extends WebSecurityConfig
   protected void configure(HttpSecurity http) throws Exception {
     // @formatter:off
     http
-      .authorizeRequests((authorizeRequests) -> authorizeRequests.mvcMatchers("/login").permitAll()
+      .authorizeRequests((authorizeRequests) -> authorizeRequests.mvcMatchers("/login","/callback").permitAll()
         .anyRequest().authenticated())
       .oauth2ResourceServer(OAuth2ResourceServerConfigurer::jwt)
       // 登录页面url
-      .formLogin().loginPage("/login");
+    .formLogin().loginPage("/login");
     // @formatter:on
   }
 
@@ -34,6 +34,6 @@ public class OAuth2ResourceServerSecurityConfiguration extends WebSecurityConfig
   @Bean
   JwtDecoder jwtDecoder() {
 //    return NimbusJwtDecoder.withJwkSetUri(domain+"/auth").build();
-    return NimbusJwtDecoder.withJwkSetUri(domain+"/SHABAO-AUTH").build();
+    return NimbusJwtDecoder.withJwkSetUri(domain+"/auth/.well-known/jwks.json").build();
   }
 }
