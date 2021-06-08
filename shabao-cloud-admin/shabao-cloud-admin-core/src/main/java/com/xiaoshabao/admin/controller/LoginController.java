@@ -13,6 +13,8 @@ import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.oauth2.server.resource.web.access.BearerTokenAccessDeniedHandler;
+import org.springframework.security.web.access.intercept.FilterSecurityInterceptor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -60,10 +62,10 @@ public class LoginController {
 
     HttpEntity entity = new HttpEntity(headers);
 
-    // ResponseEntity封装了返回的数据，包括了request、body、header等
+    // ResponseEntity封装了返回的数据，包括了request、body、header等 BearerTokenAuthenticationFilter
     try {
       ResponseEntity<String> resut = restTemplate.exchange(domain + "/admin/index", HttpMethod.GET, entity, String.class);
-      System.out.println();
+      System.out.println(resut==null);
     } catch (Exception e) {
       e.printStackTrace();
     }

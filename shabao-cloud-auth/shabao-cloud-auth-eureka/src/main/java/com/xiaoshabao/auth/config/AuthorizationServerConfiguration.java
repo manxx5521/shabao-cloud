@@ -110,16 +110,16 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
   /**对应于配置AuthorizationServer安全认证的相关信息，创建ClientCredentialsTokenEndpointFilter核心过滤器
   从表单提交经过OAuth认证
   */
-  @Override
-  public void configure(final AuthorizationServerSecurityConfigurer oauthServer) {
-    // 对获取Token的请求不再拦截
-    oauthServer.tokenKeyAccess("permitAll()")
-      // 验证获取Token的验证信息
-      .checkTokenAccess("isAuthenticated()")
-      //这个如果配置支持allowFormAuthenticationForClients的，且对/oauth/token请求的参数中有client_id和client-secret的会走ClientCredentialsTokenEndpointFilter来保护
-      //如果没有支持allowFormAuthenticationForClients或者有支持但对/oauth/token请求的参数中没有client_id和client_secret的，走basic认证保护
-      .allowFormAuthenticationForClients();
-  }
+//  @Override
+//  public void configure(final AuthorizationServerSecurityConfigurer oauthServer) {
+//    // 对获取Token的请求不再拦截
+//    oauthServer.tokenKeyAccess("permitAll()")
+//      // 验证获取Token的验证信息
+//      .checkTokenAccess("isAuthenticated()")
+//      //这个如果配置支持allowFormAuthenticationForClients的，且对/oauth/token请求的参数中有client_id和client-secret的会走ClientCredentialsTokenEndpointFilter来保护
+//      //如果没有支持allowFormAuthenticationForClients或者有支持但对/oauth/token请求的参数中没有client_id和client_secret的，走basic认证保护
+//      .allowFormAuthenticationForClients();
+//  }
 
   @Override
   public void configure(AuthorizationServerEndpointsConfigurer endpoints) {

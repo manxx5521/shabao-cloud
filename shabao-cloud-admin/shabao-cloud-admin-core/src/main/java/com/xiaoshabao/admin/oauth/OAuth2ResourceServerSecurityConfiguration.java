@@ -9,6 +9,8 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.config.annotation.web.configurers.oauth2.server.resource.OAuth2ResourceServerConfigurer;
 import org.springframework.security.oauth2.jwt.JwtDecoder;
 import org.springframework.security.oauth2.jwt.NimbusJwtDecoder;
+import org.springframework.security.oauth2.server.resource.web.BearerTokenResolver;
+import org.springframework.security.oauth2.server.resource.web.DefaultBearerTokenResolver;
 
 @EnableWebSecurity
 public class OAuth2ResourceServerSecurityConfiguration extends WebSecurityConfigurerAdapter {
@@ -26,6 +28,20 @@ public class OAuth2ResourceServerSecurityConfiguration extends WebSecurityConfig
       // 登录页面url
     .formLogin().loginPage("/login");
     // @formatter:on
+  }
+  
+  /**
+   * 自定义令牌解析
+   * @return
+   */
+  @Bean
+  public BearerTokenResolver bearerTokenResolver() {
+      DefaultBearerTokenResolver bearerTokenResolver = new DefaultBearerTokenResolver();
+      //get请求解析超链接参数
+      bearerTokenResolver.setAllowUriQueryParameter(true);
+      //post请求解析表单参数
+      bearerTokenResolver.setAllowFormEncodedBodyParameter(true);
+      return bearerTokenResolver;
   }
 
 //  @Value("${spring.security.oauth2.resourceserver.jwt.jwk-set-uri:http://localhost:9010}")

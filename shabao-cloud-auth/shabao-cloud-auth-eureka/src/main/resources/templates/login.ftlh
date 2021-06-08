@@ -48,18 +48,14 @@
 				</div>
 			</div>
 			<div class="col-sm-5">
-				<form method="post" name="loginform" id="loginform"  action="${ctx}/auth/oauth/token">
+				<form method="post" name="loginform" id="loginform">
 					<h4 class="no-margins">登录：</h4>
 					<p class="m-t-md">登录到H+后台主题UI框架</p>
 					<input name="username" type="text" class="form-control uname" placeholder="用户名" /> 
 					<input name="password" type="password" class="form-control pword m-b" placeholder="密码" /> <a href="">忘记密码了？</a>
 					<input name="grant_type" type="hidden" class="form-control pword m-b" value="password"/>
-					<input name="client_id" type="hidden" class="form-control pword m-b" value="${client_id}"/>
-					<input name="client_secret" type="hidden" class="form-control pword m-b" value="${client_secret}"/>
-					<button class="btn btn-success btn-block" type="submit">登录</button>
-					 <#if error??>
-			            <span style="color: red; ">${error}</span>
-			        </#if>
+					
+					<button class="btn btn-success btn-block" type="button">登录</button>
 				</form>
 			</div>
 		</div>
@@ -70,6 +66,37 @@
 	</div>
 	<script src="${ctx}/auth/static/resources/plugins/jquery/jquery-1.12.4.min.js"></script>
 	<script src="${ctx}/auth/static/resources/plugins/bootstrap/js/bootstrap.min.js"></script>
+	<script>
+	  	$(function(){
+	  		$('#loginform button').click(function(){
+	  			var formdata = $("#loginform").serialize();
+	  			var Authorization ="Basic "+$("meta[name='Authorization']").attr("content");
+	  			$.ajax({
+					type : "POST",
+					url : "${ctx}/auth/oauth/token",
+					data:formdata,
+					dataType : "json",
+					beforeSend: function(request) {
+						request.setRequestHeader("Authorization", Authorization);
+                    },
+					success : function(data) {
+						if (!!data.error) {
+							alert(data.error)
+						}else{
+							//"http://localhost:8080/shabao-admin/index?access_token="
+							window.location.href='${uri}'+'?access_token='+data.access_token;
+						}
+					},
+					error:function(XMLHttpRequest, textStatus, errorThrown) {
+						//console.log(errorThrown)
+						alert('系统错误');
+					}
+				});
+	  		})
+	  	})
+	  
+	  
+	  </script>
 	
 </body>
 </html>
