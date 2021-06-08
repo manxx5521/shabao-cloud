@@ -2,10 +2,16 @@ package com.xiaoshabao.auth.controller;
 
 import java.nio.charset.StandardCharsets;
 import java.util.Base64;
+import java.util.Set;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.servlet.ModelAndView;
+
+import com.xiaoshabao.auth.service.RedisClientDetailsService;
 
 /**
  * 登录页
@@ -13,28 +19,39 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class LoginController {
 
-	/**
-	 * 登录页 
-	 */
-	@GetMapping(value = "/login")
-	public String login(ModelMap model, String clientId) {
-		model.put("Authorization", getBasicAuthorization(clientId));
-		return "login";
-	}
-	
-	/**
+  @Autowired
+  private RedisClientDetailsService RedisClientDetailsService;
+  
+  @Value("${app.domain}")
+  private String domain;
+
+  /**
    * 登录页 
    */
-  @GetMapping(value = "/login",params= {"uri"})
-  public String login(ModelMap model, String clientId,String uri) {
+  @GetMapping(value = "/login")
+  public ModelAndView login(ModelMap model, String clientId, String uri) {
     model.put("Authorization", getBasicAuthorization(clientId));
-    model.put("uri", uri);
-    return "loginToUri";
+
+    if(uri!=null&&!uri.isEmpty()) {
+      model.put("uri",uri);
+    }else {
+      Set<String> uris = RedisClientDetailsService.loadClientByClientId(clientId).getRegisteredRedirectUri();
+      if (uris != null && !uris.isEmpty()) {
+         String url=uris.iterator().next();
+         if(!url.startsWith("http")) {
+           url=domain+url;
+         }
+        model.put("uri", url);
+      }
+    }
+    model.put("client_id", clientId);
+    model.put("client_secret", "secret");
+    return new ModelAndView("/login", model);
   }
-  
+
   private String getBasicAuthorization(String clientId) {
-    String clientSecret="";
-    String src = clientId+ ":" + clientSecret;
+    String clientSecret = "secret";
+    String src = clientId + ":" + clientSecret;
     return Base64.getEncoder().encodeToString(src.getBytes(StandardCharsets.UTF_8));
   }
 
